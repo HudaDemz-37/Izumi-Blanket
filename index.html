@@ -1,0 +1,989 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Izumi Japanese Blanket</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
+      body {
+        font-family: "Inter", sans-serif;
+        scroll-behavior: smooth;
+      }
+      .scroll-snap-x {
+          scroll-snap-type: x mandatory;
+      }
+
+      .scroll-snap-start {
+          scroll-snap-align: start;
+      }
+
+      .overflow-x-scroll::-webkit-scrollbar {
+          display: none;
+      }      
+      /* Styling kustom untuk scroll bar */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #f1f5f9; /* Warna track: slate-100 */
+      }
+      ::-webkit-scrollbar-thumb {
+        background-color: #94a3b8; /* Warna thumb: slate-400 */
+        border-radius: 4px;
+      }
+
+      brand-color {
+        color: #2d5377;
+      }
+      brand-border-custom {
+        border-color: #2d5377;
+      }
+      brand-bg-color {
+        background: #2d5377;
+      }
+      /* Efek hover pada tombol */
+      .btn-hover-effect {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+      .btn-hover-effect:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      /* Animasi untuk hero section */
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .fade-in {
+        animation: fadeIn 1s ease-out;
+      }
+
+      /* Styling tambahan untuk carousel */
+      .carousel-item {
+        opacity: 0;
+        transition: opacity 1s ease-in-out;
+      }
+      .carousel-item.active {
+        opacity: 1;
+      }
+    </style>
+  </head>
+  <body class="bg-slate-50 text-slate-800 leading-relaxed">
+    <!-- Navigasi Utama -->
+    <nav
+      class="sticky top-0 z-50 bg-white bg-opacity-90 backdrop-blur-sm shadow-sm"
+    >
+      <div
+        class="container mx-auto px-4 py-4 flex justify-between items-center"
+      >
+        <!-- Logo Brand (Kiri) -->
+        <div class="flex items-center space-x-2">
+          <!-- Placeholder untuk logo, ganti dengan logo Anda -->
+          <img
+            src="Logo/Izumi Logo Chosen-04.png"
+            alt="Logo Izumi"
+            class="w-30 h-10"
+          />
+        </div>
+
+        <!-- Tautan Navigasi Tengah -->
+        <div
+          class="hidden md:flex flex-1 justify-center space-x-8 text-lg font-medium"
+        >
+          <a
+            href="#hero"
+            class="text-slate hover:text-slate-900 transition-colors duration-300"
+            >Home</a
+          >
+          <a
+            href="#Our-Product"
+            class="text-slate-600 hover:text-slate-900 transition-colors duration-300"
+            >Our Product</a
+          >
+          <a
+            href="#stories"
+            class="text-slate-600 hover:text-slate-900 transition-colors duration-300"
+            >Our Stories</a
+          >
+          <a
+            href="#testimonial"
+            class="text-slate-600 hover:text-slate-900 transition-colors duration-300"
+            >Testimonial</a
+          >
+        </div>
+
+        <!-- Ikon Navigasi Kanan -->
+        <div class="hidden md:flex space-x-4 text-xl">
+          <a
+            href="#"
+            class="text-slate-600 hover:text-slate-900 transition-colors duration-300"
+            aria-label="Profile"
+          >
+            <i class="fas fa-user"></i>
+          </a>
+          <a
+            href="#"
+            class="text-slate-600 hover:text-slate-900 transition-colors duration-300"
+            aria-label="Shopping Cart"
+          >
+            <i class="fas fa-shopping-cart"></i>
+          </a>
+        </div>
+
+        <!-- Tombol Hamburger untuk Mobile -->
+        <button
+          id="hamburger"
+          class="md:hidden text-slate-800 focus:outline-none"
+        >
+          <svg
+            class="w-8 h-8"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16m-7 6h7"
+            ></path>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Menu Mobile yang disembunyikan secara default -->
+      <div
+        id="mobile-menu"
+        class="hidden md:hidden bg-white py-4 px-4 text-center border-t border-slate-200"
+      >
+        <a
+          href="#hero"
+          class="block py-2 text-lg text-slate-800 hover:bg-slate-100 rounded-md"
+          onclick="closeMobileMenu()"
+          >Home</a
+        >
+        <a
+          href="#Our-Product"
+          class="block py-2 text-lg text-slate-800 hover:bg-slate-100 rounded-md"
+          onclick="closeMobileMenu()"
+          >Our Product</a
+        >
+        <a
+          href="#stories"
+          class="block py-2 text-lg text-slate-800 hover:bg-slate-100 rounded-md"
+          onclick="closeMobileMenu()"
+          >Our Stories</a
+        >
+        <a
+          href="#testimonial"
+          class="block py-2 text-lg text-slate-800 hover:bg-slate-100 rounded-md"
+          onclick="closeMobileMenu()"
+          >Testimonial</a
+        >
+      </div>
+    </nav>
+
+    <!-- Konten Utama -->
+    <main>
+      <!-- Bagian Hero dengan Carousel -->
+      <section id="hero" class="relative flex min-h-[90vh]">
+        <!-- Carousel Container (3/4 layar) -->
+        <div
+          class="relative flex-grow flex-shrink-0 w-full md:w-3/4 bg-slate-100 overflow-hidden"
+        >
+          <!-- Slide 1: Logo Izumi -->
+          <div
+            class="carousel-item absolute inset-0 flex items-center justify-center bg-white active"
+          >
+            <div class="text-center text-slate-700">
+              <img src="Logo/Izumi Logo Chosen-02.png" alt="Izumi Logo" />
+            </div>
+          </div>
+
+          <!-- Slide 2: Summer Sale -->
+          <div
+            class="carousel-item absolute inset-0 flex items-center justify-center p-8 bg-slate-100"
+          >
+            <div class="text-center md:text-left max-w-xl">
+              <h2 class="text-5xl md:text-7xl font-bold text-slate-900 mb-4">
+                Summer Sale<br />Up To 35% Off
+              </h2>
+              <p class="text-lg md:text-xl text-slate-600 mb-6">
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua"
+              </p>
+              <div
+                class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4"
+              >
+                <a
+                  href="#"
+                  class="inline-block bg-slate-700 text-white font-semibold py-3 px-8 rounded-full brand-bg-color btn-hover-effect text-center"
+                >
+                  Ger Started
+                </a>
+                <a
+                  href="#"
+                  class="inline-block bg-transparent text-slate-700 font-semibold py-3 px-8 rounded-full border-color btn-hover-effect text-center"
+                >
+                  Izumi’s Favorites
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bagian kanan (1/4 layar) dengan video -->
+        <div
+          class="hidden md:flex flex-shrink-0 w-1/4 relative overflow-hidden"
+        >
+          <!-- Placeholder video, ganti dengan URL video Anda -->
+          <video
+            autoplay
+            muted
+            loop
+            playsinline
+            class="absolute inset-0 w-full h-full object-cover"
+          >
+            <source src="izumi1.mp4" type="video/mp4" />
+            Browser Anda tidak mendukung tag video.
+          </video>
+        </div>
+      </section>
+
+      <!-- Bagian Izumi Story -->
+      <section id="izumi-story" class="py-20 px-4 bg-slate-100">
+        <div
+          class="flex flex-col md:flex-row items-center justify-center p-8 bg-slate-100 rounded-lg space-y-8 md:space-y-0 md:space-x-12"
+        >
+          <div class="w-full md:w-1/2 flex justify-center">
+            <div
+              style="border-color: #2d5377"
+              class="relative w-full max-w-sm overflow-hidden rounded-xl border-4 brand-border-custom"
+            >
+              <img
+                src="izumi story.jpg"
+                alt="Izumi"
+                class="w-full h-auto object-cover"
+              />
+            </div>
+          </div>
+
+          <div
+            class="w-full md:w-1/2 flex flex-col items-center justify-center space-y-4"
+          >
+            <h2
+              style="color: #2d5377"
+              class="text-2xl md:text-3xl font-bold text-center tracking-wider"
+            >
+              IZUMI STORY
+            </h2>
+            <p
+              style="color: #2d5377"
+              class="text-lg md:text-xl text-gray-600 italic leading-relaxed"
+            >
+              “Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua”
+            </p>
+          </div>
+        </div>
+      </section>
+      <section id="Our-partner" class="bg-white py-8">
+        <div class="container mx-auto">
+          <div class="flex items-center justify-center md:justify-start">
+            <p style="color: #2d5377" class="mr-10 font-semibold">
+              As Partner Of:
+            </p>
+            <div
+              class="flex flex-wrap justify-center items-center space-x-4 md:space-x-8"
+            >
+              <img
+                src="Partner/santika.png"
+                alt="Santika Indonesia"
+                class="h-20"
+              />
+              <img
+                src="Partner/Ritz Calton.png"
+                alt="The Ritz-Carlton"
+                class="h-20"
+              />
+              <img
+                src="Partner/The Langham.png"
+                alt="The Langham"
+                class="h-20"
+              />
+              <img src="Partner/Aston.png" alt="ASTON" class="h-20" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Bagian-bagian lainnya -->
+      <section id="Our-Product" class="max-w-6xl mx-auto px-4 py-8">
+        <h2 style="color: #2d5377;" class="text-4xl font-semi-bold mb-8">Shop Best Seller</h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Product Card 1 -->
+          <div
+            id="product-card-1"
+            class=" rounded-lg overflow-hidden relative group"
+          >
+            <!-- Image Container with Navigation Arrows -->
+            <div class="relative">
+              <img
+                src="product/item1.jpg"
+                alt="Izumi Colling Comforter 180x200cm"
+                class="w-full h-auto object-cover rounded-xl"
+              />
+              <div
+                class="absolute top-1/2 -translate-y-1/2 w-full flex justify-between px-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+              >
+                <button
+                  class="prev-btn bg-gray-800/50 hover:bg-gray-800/75 text-white p-2 rounded-full focus:outline-none"
+                >
+                  <svg
+                    class="w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M15 19l-7-7 7-7"
+                    ></path>
+                  </svg>
+                </button>
+                <button
+                  class="next-btn bg-gray-800/50 hover:bg-gray-800/75 text-white p-2 rounded-full focus:outline-none"
+                >
+                  <svg
+                    class="w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M9 5l7 7-7 7"
+                    ></path>
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            <div
+              class="absolute top-4 left-4 bg-white/70 backdrop-blur-md text-gray-800 text-sm font-semibold px-2 py-1 rounded-full"
+            >
+              180 x 200cm 200gsm
+            </div>
+            <div class="p-4">
+              <h3 class="font-semibold text-gray-900 text-lg">
+                Izumi Colling Comforter
+              </h3>
+              <p class="text-gray-600">含税123元</p>
+              <div class="flex items-center mt-2">
+                <!-- Rating Stars -->
+                <div class="flex text-yellow-400">
+                  <span class="text-sm">★</span><span class="text-sm">★</span
+                  ><span class="text-sm">★</span><span class="text-sm">★</span
+                  ><span class="text-sm">★</span>
+                </div>
+                <span class="ml-2 text-sm text-gray-500"
+                  >5.0 (10,000 Reviews)</span
+                >
+              </div>
+              <div class="flex mt-4 space-x-2">
+                <button style="background-color: #2d5377;"
+                  class="flex-1 py-2 px-4 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition duration-300"
+                >
+                  Buy
+                </button>
+                <button style="border-color: #2d5377; color: #2d5377;"
+                  class="flex-1 py-2 px-4 border border-blue-600 text-blue-600 rounded-md hover:bg-blue-50 transition duration-300"
+                >
+                  Add To Cart
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product Card 2 -->
+          <div
+            id="product-card-2"
+            class=" rounded-lg overflow-hidden relative group"
+          >
+            <!-- Image Container with Navigation Arrows -->
+            <div class="relative">
+              <img
+                src="product/item1.jpg"
+                alt="Izumi Colling Comforter 230x200cm"
+                class="w-full h-auto object-cover rounded-xl"
+              />
+              <div
+                class="absolute top-1/2 -translate-y-1/2 w-full flex justify-between px-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+              >
+                <button
+                  class="prev-btn bg-gray-800/50 hover:bg-gray-800/75 text-white p-2 rounded-full focus:outline-none"
+                >
+                  <svg
+                    class="w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M15 19l-7-7 7-7"
+                    ></path>
+                  </svg>
+                </button>
+                <button
+                  class="next-btn bg-gray-800/50 hover:bg-gray-800/75 text-white p-2 rounded-full focus:outline-none"
+                >
+                  <svg
+                    class="w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M9 5l7 7-7 7"
+                    ></path>
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            <div
+              class="absolute top-4 left-4 bg-white/70 backdrop-blur-md text-gray-800 text-sm font-semibold px-2 py-1 rounded-full"
+            >
+              230 x 200cm 200gsm
+            </div>
+            <!-- "Best Seller" ribbon -->
+            <div style="background-color: #2d5377;"
+              class="absolute top-0 right-0 mt-2 mr-2 text-white text-xs font-semibold px-5 py-2 rounded-full"
+            >
+              Best Seller
+            </div>
+            <div class="p-4">
+              <h3 class="font-semibold text-gray-900 text-lg">
+                Izumi Colling Comforter
+              </h3>
+              <p class="text-gray-600">含税146元</p>
+              <div class="flex items-center mt-2">
+                <!-- Rating Stars -->
+                <div class="flex text-yellow-400">
+                  <span class="text-sm">★</span><span class="text-sm">★</span
+                  ><span class="text-sm">★</span><span class="text-sm">★</span
+                  ><span class="text-sm">★</span>
+                </div>
+                <span class="ml-2 text-sm text-gray-500"
+                  >5.0 (10,000 Reviews)</span
+                >
+              </div>
+              <div class="flex mt-4 space-x-2">
+                <button style="background-color: #2d5377;"
+                  class="flex-1 py-2 px-4 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition duration-300"
+                >
+                  Buy
+                </button>
+                <button style="border-color: #2d5377; color: #2d5377;"
+                  class="flex-1 py-2 px-4 border border-blue-600 text-blue-600 rounded-md hover:bg-blue-50 transition duration-300"
+                >
+                  Add To Cart
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product Card 3 -->
+          <div
+            id="product-card-3"
+            class=" rounded-lg overflow-hidden relative group"
+          >
+            <!-- Image Container with Navigation Arrows -->
+            <div class="relative">
+              <img
+                src="product/item1.jpg"
+                alt="Izumi Colling Comforter 260x200cm"
+                class="w-full h-auto object-cover rounded-xl"
+              />
+              <div
+                class="absolute top-1/2 -translate-y-1/2 w-full flex justify-between px-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+              >
+                <button
+                  class="prev-btn bg-gray-800/50 hover:bg-gray-800/75 text-white p-2 rounded-full focus:outline-none"
+                >
+                  <svg
+                    class="w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M15 19l-7-7 7-7"
+                    ></path>
+                  </svg>
+                </button>
+                <button
+                  class="next-btn bg-gray-800/50 hover:bg-gray-800/75 text-white p-2 rounded-full focus:outline-none"
+                >
+                  <svg
+                    class="w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M9 5l7 7-7 7"
+                    ></path>
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            <div
+              class="absolute top-4 left-4 bg-white/70 backdrop-blur-md text-gray-800 text-sm font-semibold px-2 py-1 rounded-full"
+            >
+              260 x 200cm 200gsm
+            </div>
+            <div class="p-4">
+              <h3 class="font-semibold text-gray-900 text-lg">
+                Izumi Colling Comforter
+              </h3>
+              <p class="text-gray-600">含税162元</p>
+              <div class="flex items-center mt-2">
+                <!-- Rating Stars -->
+                <div class="flex text-yellow-400">
+                  <span class="text-sm">★</span><span class="text-sm">★</span
+                  ><span class="text-sm">★</span><span class="text-sm">★</span
+                  ><span class="text-sm">★</span>
+                </div>
+                <span class="ml-2 text-sm text-gray-500"
+                  >5.0 (10,000 Reviews)</span
+                >
+              </div>
+              <div class="flex mt-4 space-x-2">
+                <button style="background-color: #2d5377;"
+                  class="flex-1 py-2 px-4 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition duration-300"
+                >
+                  Buy
+                </button>
+                <button style="border-color: #2d5377; color: #2d5377;"
+                  class="flex-1 py-2 px-4 border border-blue-600 text-blue-600 rounded-md hover:bg-blue-50 transition duration-300"
+                >
+                  Add To Cart
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    <!-- Shop By Category Section -->
+    <section id="Shop Category" class="bg-white">
+    <div class="max-w-6xl mx-auto px-4 py-8">
+        <h2 style="color: #2d5377;" class="text-4xl  mb-8">Shop By Category</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Category Card 1: Shop Comforters -->
+            <a href="#" class="text-center">
+                <img src="product/1.png" alt="Shop Sheets" class="bg-slate-100 w-full h-auto object-cover">
+              <h3 style="color: #2d5377;" class="font-semibold text-gray-900">
+                Izumi Colling Comforter
+              </h3>
+            </a>
+
+            <!-- Category Card 2: Shop Pillows -->
+            <a href="#" class="text-center">
+                <img src="product/2.png" alt="Shop Sheets" class="bg-slate-100 w-full h-auto object-cover">
+              <h3 style="color: #2d5377;" class="font-semibold text-gray-900">
+                Izumi Colling Comforter
+              </h3>
+            </a>
+            <!-- Category Card 3: Shop Sheets -->
+            <a href="#" class="text-center">
+                <img src="product/3.png" alt="Shop Sheets" class="bg-slate-100 w-full h-auto object-cover">
+              <h3 style="color: #2d5377;" class="font-semibold text-gray-900">
+                Izumi Colling Comforter
+              </h3>
+            </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bagian Our Stories (Slider) -->
+<section class="max-w-6xl mx-auto px-4 py-8">
+        <h2 style="color: #2d5377;" class="text-4xl font-semi-bold mb-8 text-center">Our Stories</h2>
+        <div class="relative">
+            <div id="stories-slider" class="flex overflow-x-scroll scroll-snap-x gap-8 pb-4">
+                <!-- Kartu Ulasan 1 -->
+                <div class="flex-none w-full md:w-1/2 lg:w-1/2 scroll-snap-start">
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden flex flex-col md:flex-row">
+                        <div class="p-6 flex-1">
+                            <p class="text-gray-700 mb-4 italic">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua"</p>
+                            <div class="flex items-center">
+                                <span class="font-semibold text-gray-900">Himawari</span>
+                                <div class="flex text-yellow-400 ml-auto">
+                                    <span class="text-sm">★</span><span class="text-sm">★</span><span class="text-sm">★</span><span class="text-sm">★</span><span class="text-sm">★</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex-1 min-h-[200px] md:min-h-0">
+                            <img src="review/4.png" alt="User Image Himawari" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Kartu Ulasan 2 -->
+                <div class="flex-none w-full md:w-1/2 lg:w-1/2 scroll-snap-start">
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden flex flex-col md:flex-row">
+                        <div class="p-6 flex-1">
+                            <p class="text-gray-700 mb-4 italic">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua"</p>
+                            <div class="flex items-center">
+                                <span class="font-semibold text-gray-900">Midorima</span>
+                                <div class="flex text-yellow-400 ml-auto">
+                                    <span class="text-sm">★</span><span class="text-sm">★</span><span class="text-sm">★</span><span class="text-sm">★</span><span class="text-sm">★</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex-1 min-h-[200px] md:min-h-0">
+                            <img src="review/5.png" alt="User Image Midorima" class="h-auto overflow-hidden">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Kontrol Navigasi Slider -->
+            <div class="absolute inset-y-0 left-0 flex items-center">
+                <button id="stories-prev" class="bg-gray-800/50 hover:bg-gray-800/75 text-white p-2 rounded-full focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                </button>
+            </div>
+            <div class="absolute inset-y-0 right-0 flex items-center">
+                <button id="stories-next" class="bg-gray-800/50 hover:bg-gray-800/75 text-white p-2 rounded-full focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                </button>
+            </div>
+        </div>
+    </section>
+<section class="max-w-6xl mx-auto px-4 py-8">
+  <div class="overflow-hidden flex flex-col md:flex-row p-6 items-start">
+    <!-- Gambar Wanita -->
+    <div class="w-full md:w-1/2 mb-4 md:mb-0">
+      <img src="image1.jpg" alt="Gambar Izumi Everyone" class="w-full h-auto object-cover rounded-xl">
+    </div>
+
+    <!-- Bagian Kanan -->
+    <div class="w-full md:w-1/2 md:px-10 flex flex-col justify-start">
+      
+      <!-- Logo Sleep In Serenity -->
+      <div class="mb-6">
+        <img src="6.png" alt="Sleep In Serenity" class="w-full h-auto mb-6">
+      </div>
+
+      <!-- Judul -->
+      <h2 style="color: #2d5377;" class="text-5xl md:text-5xl mb-4">
+        <span class="font-bold">Izumi</span> Everyone For A Good Rest
+      </h2>
+
+      <!-- Paragraf -->
+      <p class="text-xl ">
+        "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua"
+      </p>
+    </div>
+  </div>
+</section>
+    <!-- Footer -->
+    <!-- Footer -->
+    <footer class="bg-[#18344B] text-gray-200 py-12">
+        <div class="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
+            <!-- Kolom 1: Izumi Logo & Info Kontak -->
+            <div class="lg:col-span-2">
+                <h3 class="text-4xl font-semibold mb-2 footer-font">IZUMI</h3>
+                <p class="text-lg footer-font mb-4">Sleep In Serenity</p>
+                <div class="flex space-x-4 mb-4 text-xl">
+                    <a href="#" class="hover:text-white transition-colors duration-300"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="hover:text-white transition-colors duration-300"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="hover:text-white transition-colors duration-300"><i class="fab fa-tiktok"></i></a>
+                </div>
+                <p class="text-sm mb-1">Call or chat with us 24/7</p>
+                <p class="text-sm mb-4">+62 1234-5678-9000</p>
+                <p class="text-sm mb-1">Email Us</p>
+                <p class="text-sm mb-1">Customer Support: <a href="mailto:hello@izumi.com" class="underline">hello@izumi.com</a></p>
+                <p class="text-sm mb-1">Wholesale & Dealer Inquiries:</p>
+                <p class="text-sm mb-1"><a href="mailto:wholesale@izumi.com" class="underline">wholesale@izumi.com</a></p>
+                <p class="text-sm"><a href="mailto:press@izumi.com" class="underline">press@izumi.com</a></p>
+            </div>
+
+            <!-- Kolom 2-5: Menu Navigasi -->
+            <div>
+                <h4 class="text-lg font-bold mb-4">SHOP</h4>
+                <ul class="space-y-2">
+                    <li><a href="#" class="hover:underline">Comforters</a></li>
+                    <li><a href="#" class="hover:underline">Sheets</a></li>
+                    <li><a href="#" class="hover:underline">Pillow</a></li>
+                    <li><a href="#" class="hover:underline">Sleepwear</a></li>
+                    <li><a href="#" class="hover:underline">Accesories</a></li>
+                    <li><a href="#" class="hover:underline">Gift Card</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-lg font-bold mb-4">LEARN</h4>
+                <ul class="space-y-2">
+                    <li><a href="#" class="hover:underline">About Us</a></li>
+                    <li><a href="#" class="hover:underline">Blog</a></li>
+                    <li><a href="#" class="hover:underline">Press</a></li>
+                    <li><a href="#" class="hover:underline">Affiliates</a></li>
+                    <li><a href="#" class="hover:underline">Influencers</a></li>
+                    <li><a href="#" class="hover:underline">Store Locator</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-lg font-bold mb-4">SUPPORT</h4>
+                <ul class="space-y-2">
+                    <li><a href="#" class="hover:underline">Track Order</a></li>
+                    <li><a href="#" class="hover:underline">Need help?</a></li>
+                    <li><a href="#" class="hover:underline">Terms of Service</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-lg font-bold mb-4">REWARDS</h4>
+                <ul class="space-y-2">
+                    <li><a href="#" class="hover:underline">Reward Points</a></li>
+                    <li><a href="#" class="hover:underline">Refer a Friend</a></li>
+                    <li><a href="#" class="hover:underline">Community</a></li>
+                    <li><a href="#" class="hover:underline">Discount Benefits</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Bagian Hak Cipta & Nama Pengguna -->
+        <div class="max-w-6xl mx-auto px-4 mt-8 pt-8 border-t border-gray-600 text-center md:text-left">
+            <p class="text-sm">&copy; 2025 Izumi. All Rights Reserved.</p>
+            <p class="text-sm mt-2">khoirulhudaa37@gmail.com</p>
+        </div>
+    </footer>
+
+
+    <script>
+      // Mendapatkan elemen tombol hamburger dan menu mobile
+      const hamburgerBtn = document.getElementById("hamburger");
+      const mobileMenu = document.getElementById("mobile-menu");
+
+      // Menambahkan event listener untuk tombol hamburger
+      hamburgerBtn.addEventListener("click", () => {
+        mobileMenu.classList.toggle("hidden");
+      });
+
+      // Menutup menu mobile saat tautan diklik (hanya untuk mobile)
+      function closeMobileMenu() {
+        if (!mobileMenu.classList.contains("hidden")) {
+          mobileMenu.classList.add("hidden");
+        }
+      }
+
+      // Script untuk smooth scrolling
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+
+          const targetId = this.getAttribute("href").substring(1);
+          const targetElement = document.getElementById(targetId);
+          const navHeight = document.querySelector("nav").offsetHeight;
+
+          if (targetElement) {
+            window.scrollTo({
+              top: targetElement.offsetTop - navHeight,
+              behavior: "smooth",
+            });
+          }
+        });
+      });
+
+      // Menangani submit form (non-fungsional, hanya menampilkan pesan)
+      document
+        .getElementById("contactForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+          const formMessage = document.getElementById("form-message");
+          formMessage.classList.remove("hidden");
+
+          setTimeout(() => {
+            formMessage.classList.add("hidden");
+          }, 3000); // Sembunyikan pesan setelah 3 detik
+        });
+
+      // Script untuk Hero Carousel
+      let slideIndex = 0;
+      const slides = document.querySelectorAll(".carousel-item");
+      const intervalTime = 5000; // Waktu pergantian slide dalam ms
+
+      function showSlides() {
+        // Sembunyikan semua slide
+        slides.forEach((slide) => slide.classList.remove("active"));
+
+        // Naikkan index dan kembali ke 0 jika sudah mencapai akhir
+        slideIndex++;
+        if (slideIndex >= slides.length) {
+          slideIndex = 0;
+        }
+
+        // Tampilkan slide saat ini
+        slides[slideIndex].classList.add("active");
+      }
+
+      // Jalankan carousel saat halaman dimuat
+      window.addEventListener("load", () => {
+        setInterval(showSlides, intervalTime);
+      });
+    </script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        // Define an array of products with their images.
+        // You can replace these placeholder URLs with your actual image URLs.
+        const products = [
+          {
+            id: "product-card-1",
+            images: [
+              "product/item1.jpg",
+              "product/item2.jpg",
+              "product/item3.jpg",
+            ],
+          },
+          {
+            id: "product-card-2",
+            images: [
+              "product/item1.jpg",
+              "product/item2.jpg",
+              "product/item3.jpg",
+            ],
+          },
+          {
+            id: "product-card-3",
+            images: [
+              "product/item1.jpg",
+              "product/item2.jpg",
+              "product/item3.jpg",
+            ],
+          },
+        ];
+
+        // Store the current image index for each product.
+        const currentImageIndex = {};
+        products.forEach((product) => {
+          currentImageIndex[product.id] = 0;
+        });
+
+        // Function to change image for a given product card.
+        const changeImage = (cardId, direction) => {
+          const card = document.getElementById(cardId);
+          const imgElement = card.querySelector("img");
+
+          // Find the product data based on the cardId.
+          const product = products.find((p) => p.id === cardId);
+
+          if (!product) return; // Exit if product not found.
+
+          let nextIndex = currentImageIndex[cardId] + direction;
+          if (nextIndex < 0) {
+            nextIndex = product.images.length - 1; // Loop back to the last image.
+          } else if (nextIndex >= product.images.length) {
+            nextIndex = 0; // Loop back to the first image.
+          }
+
+          imgElement.src = product.images[nextIndex];
+          currentImageIndex[cardId] = nextIndex;
+        };
+
+        // Add event listeners for navigation arrows.
+        document.querySelectorAll(".prev-btn").forEach((button) => {
+          button.addEventListener("click", (event) => {
+            const cardId = event.target.closest('[id^="product-card-"]').id;
+            changeImage(cardId, -1);
+          });
+        });
+
+        document.querySelectorAll(".next-btn").forEach((button) => {
+          button.addEventListener("click", (event) => {
+            const cardId = event.target.closest('[id^="product-card-"]').id;
+            changeImage(cardId, 1);
+          });
+        });
+      });
+    </script>
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const swiper = new Swiper('.our-stories-swiper', {
+            loop: true,
+            slidesPerView: 1,
+            spaceBetween: 20,
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            breakpoints: {
+                768: {
+                    slidesPerView: 1,
+                    spaceBetween: 30,
+                },
+            },
+        });
+    });
+    // Logika untuk slider ulasan
+            const slider = document.getElementById('stories-slider');
+            const prevButton = document.getElementById('stories-prev');
+            const nextButton = document.getElementById('stories-next');
+            const cardWidth = document.querySelector('#stories-slider > div').offsetWidth;
+
+            prevButton.addEventListener('click', () => {
+                slider.scrollBy({ left: -cardWidth, behavior: 'smooth' });
+            });
+
+            nextButton.addEventListener('click', () => {
+                slider.scrollBy({ left: cardWidth, behavior: 'smooth' });
+            });
+</script>
+  </body>
+</html>
